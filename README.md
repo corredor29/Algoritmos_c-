@@ -56,17 +56,18 @@ Un algoritmo es \(O(1)\) cuando tarda **lo mismo** sin importar cuántos element
 ```csharp
 using System;
 
-class Ejemplo1
+namespace Algoritmos_grupo.utils;
+
+public class Ejemplo1
 {
     // Devuelve el primer elemento del arreglo
     // Sin importar el tamaño del arreglo, siempre hace UNA sola operación
-    static int GetFirstElement(int[] arr)
-    {
+    public static int GetFirstElement(int[] arr)    {
         // Acceso directo por índice 0: no recorre nada, costo fijo siempre
-        return arr;
+        return arr[0];
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         int[] data = { 10, 20, 30, 40, 50 };
 
@@ -94,11 +95,14 @@ Un algoritmo es \(O(n)\) cuando el número de operaciones crece **proporcionalme
 ```csharp
 using System;
 
-class Ejemplo2
+namespace Algoritmos_grupo.utils;
+
+
+public class Ejemplo2
 {
     // Suma todos los elementos del arreglo recorriéndolo una sola vez
     // Si el arreglo tiene n elementos → hace exactamente n sumas → O(n)
-    static int SumArray(int[] arr)
+    public static int SumArray(int[] arr)
     {
         int sum = 0; // Acumulador donde iremos guardando la suma parcial
 
@@ -112,7 +116,7 @@ class Ejemplo2
         return sum; // Devolvemos la suma total
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         int[] data = { 1, 2, 3, 4, 5 };
 
@@ -140,12 +144,14 @@ Un algoritmo es \(O(n^2)\) cuando el número de operaciones crece **como el cuad
 ```csharp
 using System;
 
-class Ejemplo3
+namespace Algoritmos_grupo.utils;
+
+public class Ejemplo3
 {
     // Cuenta cuántos pares (i, j) existen donde arr[i] < arr[j]
     // Usa dos bucles anidados → por cada elemento recorre TODO el arreglo
     // Con n=5: 5×5 = 25 comparaciones en total → O(n²)
-    static int CountPairs(int[] arr)
+    public static int CountPairs(int[] arr)
     {
         int count = 0; // Contador de pares válidos encontrados
 
@@ -165,7 +171,7 @@ class Ejemplo3
         return count; // Total de pares donde arr[i] < arr[j]
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         int[] data = { 3, 1, 4, 1, 5 };
 
@@ -255,47 +261,51 @@ La idea clave es que **cada pasada coloca exactamente un elemento en su posició
 ```csharp
 using System;
 
-class SelectionSortDemo
+namespace Algoritmos_grupo.utils;
+
+public class SelectionSortDemo
 {
-    // Ordena el arreglo 'arr' de menor a mayor usando Selection Sort
-    static void SelectionSort(int[] arr)
+    // Ordena el arreglo de menor a mayor buscando el mínimo en cada pasada
+    // En cada iteración del bucle externo coloca UN elemento en su posición final
+    public static void SelectionSort(int[] arr)
     {
         int n = arr.Length;
 
-        // i representa el límite entre zona ordenada (izquierda) y no ordenada (derecha)
-        // En cada iteración, colocamos el mínimo de la zona derecha en la posición i
+        // El bucle externo avanza el límite de la zona ordenada
+        // Después de i=0: el mínimo global está en arr[0]
+        // Después de i=1: el segundo mínimo está en arr[1], y así sucesivamente
         for (int i = 0; i < n - 1; i++)
         {
-            int minIndex = i; // Asumimos que el mínimo está en la posición i
+            int minIndex = i; // Suponemos que el mínimo de la zona no ordenada está en i
 
-            // Recorremos toda la zona no ordenada buscando un valor más pequeño
+            // Recorremos toda la zona no ordenada (desde i+1 hasta el final)
+            // buscando si existe algún elemento más pequeño que arr[minIndex]
             for (int j = i + 1; j < n; j++)
             {
-                // Si encontramos un valor más pequeño, actualizamos minIndex
                 if (arr[j] < arr[minIndex])
-                    minIndex = j;
+                    minIndex = j; // Encontramos un valor más pequeño, actualizamos
             }
 
-            // Solo intercambiamos si el mínimo real no está ya en la posición i
+            // Solo intercambiamos si el mínimo real NO estaba ya en la posición i
             // Esto evita un intercambio innecesario cuando i ya tiene el mínimo
             if (minIndex != i)
             {
-                int temp      = arr[i];
-                arr[i]        = arr[minIndex]; // El mínimo va a su posición definitiva
-                arr[minIndex] = temp;          // El elemento desplazado va al hueco
+                int temp        = arr[i];
+                arr[i]          = arr[minIndex]; // El mínimo sube a su posición definitiva
+                arr[minIndex]   = temp;          // El elemento desplazado va al hueco
             }
         }
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         int[] data = { 64, 25, 12, 22, 11 };
 
         Console.WriteLine("Antes:   " + string.Join(", ", data));
 
-        // Pasada 1 (i=0): encuentra 11 en posición 4, intercambia con 64 → [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_e78f29b2-ccbc-407e-8955-e169e9562bd9/27b54d29-f1fb-4744-88e3-1b075f3d18dc/git-flow.md)
-        // Pasada 2 (i=1): encuentra 12 en posición 2, intercambia con 25 → [arxiv](https://arxiv.org/pdf/2305.07229.pdf)
-        // Pasada 3 (i=2): encuentra 22 en posición 3, intercambia con 25 → [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_e78f29b2-ccbc-407e-8955-e169e9562bd9/df2dc6d3-ba04-42e8-b256-ba3e65d63a30/GIT.md)
+        // Pasada 1 (i=0): encuentra 11 en posición 4, intercambia con 64 → [11, 25, 12, 22, 64]
+        // Pasada 2 (i=1): encuentra 12 en posición 2, intercambia con 25 → [11, 12, 25, 22, 64]
+        // Pasada 3 (i=2): encuentra 22 en posición 3, intercambia con 25 → [11, 12, 22, 25, 64]
         // Pasada 4 (i=3): 25 ya está en su lugar, no intercambia
         SelectionSort(data);
 
@@ -352,45 +362,48 @@ La clave de su eficiencia es que si el arreglo ya está ordenado o casi ordenado
 ```csharp
 using System;
 
-class InsertionSortDemo
+namespace Algoritmos_grupo.utils;
+
+public class InsertionSortDemo
 {
-    // Ordena el arreglo 'arr' de menor a mayor usando Insertion Sort
-    static void InsertionSort(int[] arr)
+    // Ordena el arreglo de menor a mayor insertando cada elemento en su lugar correcto
+    // Funciona como ordenar cartas: toma una carta nueva y la coloca donde corresponde
+    public static void InsertionSort(int[] arr)
     {
         int n = arr.Length;
 
-        // Comenzamos desde el índice 1: el primer elemento (índice 0)
-        // ya forma por sí solo una zona "ordenada" de un elemento
+        // Empezamos en i=1 porque arr[0] solo ya forma una zona "ordenada" de un elemento
+        // En cada iteración, arr[0..i-1] ya está ordenado y queremos insertar arr[i]
         for (int i = 1; i < n; i++)
         {
-            int key = arr[i]; // Guardamos el elemento que vamos a insertar
-            int j   = i - 1; // j apunta al último elemento de la zona ordenada
+            int key = arr[i]; // Guardamos el elemento a insertar (la "carta nueva")
+            int j   = i - 1; // j apunta al último elemento de la zona ya ordenada
 
-            // Desplazamos hacia la derecha todos los elementos de la zona ordenada
-            // que sean mayores que key, abriendo espacio para insertar key
+            // Mientras no lleguemos al inicio Y el elemento de la izquierda sea mayor que key:
+            // desplazamos ese elemento una posición a la derecha para abrir espacio
             while (j >= 0 && arr[j] > key)
             {
-                arr[j + 1] = arr[j]; // Mueve el elemento una posición a la derecha
-                j--;                 // Retrocedemos hacia la izquierda
+                arr[j + 1] = arr[j]; // Mueve el elemento mayor un lugar hacia la derecha
+                j--;                 // Retrocede para comparar con el siguiente a la izquierda
             }
 
-            // j+1 es la posición correcta para key:
-            // todos los elementos a su izquierda son menores o iguales,
-            // y todos a su derecha son mayores
-            arr[j + 1] = key;
+            // Cuando el while termina, j+1 es el hueco correcto para key:
+            // arr[0..j] son todos menores o iguales a key
+            // arr[j+2..i] son todos mayores que key (ya desplazados)
+            arr[j + 1] = key; // Insertamos key en su posición correcta
         }
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         int[] data = { 12, 11, 13, 5, 6 };
 
         Console.WriteLine("Antes:   " + string.Join(", ", data));
 
-        // i=1: key=11, desplaza 12          → [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_e78f29b2-ccbc-407e-8955-e169e9562bd9/9538e6ec-6c5d-4a2c-bb0d-5c73512f6084/CSharp.pdf)
-        // i=2: key=13, no desplaza nada     → [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_e78f29b2-ccbc-407e-8955-e169e9562bd9/5c1bd1bd-39b4-492b-908d-f128b8cf14b2/HTML2025.md)
-        // i=3: key=5,  desplaza 13, 12, 11  → [ 5, 11, 12, 13,  6]
-        // i=4: key=6,  desplaza 13, 12, 11  → [ 5,  6, 11, 12, 13]
+        // i=1: key=11, desplaza 12 → [11, 12, 13, 5, 6]
+        // i=2: key=13, no desplaza nada → [11, 12, 13, 5, 6]
+        // i=3: key=5,  desplaza 13,12,11 → [5, 11, 12, 13, 6]
+        // i=4: key=6,  desplaza 13,12,11 → [5, 6, 11, 12, 13]
         InsertionSort(data);
 
         Console.WriteLine("Después: " + string.Join(", ", data));
@@ -441,88 +454,87 @@ La clave es que **fusionar dos mitades ya ordenadas es muy eficiente**: basta co
 ```csharp
 using System;
 
-class MergeSortDemo
+namespace Algoritmos_grupo.utils;
+
+public class MergeSortDemo
 {
     // ─────────────────────────────────────────────────────────
-    // PASO 1: Merge (fusión)
-    // Recibe dos mitades YA ordenadas: arr[left..mid] y arr[mid+1..right]
-    // Las combina en un único segmento ordenado dentro del mismo arr
+    // Fusiona dos mitades ya ordenadas en un único segmento ordenado
+    // Recibe: arr, el índice izquierdo, el medio y el derecho
+    // arr[left..mid] está ordenado  Y  arr[mid+1..right] está ordenado
+    // Al terminar: arr[left..right] queda completamente ordenado
     // ─────────────────────────────────────────────────────────
-    static void Merge(int[] arr, int left, int mid, int right)
+    public static void Merge(int[] arr, int left, int mid, int right)
     {
         int n1 = mid - left + 1; // Cantidad de elementos en la mitad izquierda
         int n2 = right - mid;    // Cantidad de elementos en la mitad derecha
 
-        // Creamos arreglos temporales para no sobreescribir datos mientras fusionamos
+        // Copiamos ambas mitades en arreglos temporales
+        // Necesitamos copias para no sobreescribir datos mientras fusionamos
         int[] L = new int[n1];
         int[] R = new int[n2];
 
-        // Copiamos los datos originales en los temporales
-        for (int i = 0; i < n1; i++)
-            L[i] = arr[left + i];
+        for (int i = 0; i < n1; i++) L[i] = arr[left + i];      // Copia la mitad izquierda
+        for (int j = 0; j < n2; j++) R[j] = arr[mid + 1 + j];  // Copia la mitad derecha
 
-        for (int j = 0; j < n2; j++)
-            R[j] = arr[mid + 1 + j];
-
-        int iL = 0;    // Índice para recorrer L
-        int iR = 0;    // Índice para recorrer R
-        int k  = left; // Índice para escribir en arr
+        int iL = 0;   // Índice para recorrer L (empieza al inicio de la copia izquierda)
+        int iR = 0;   // Índice para recorrer R (empieza al inicio de la copia derecha)
+        int k  = left; // Índice para escribir el resultado directamente en arr
 
         // Comparamos el frente de L y R, y escribimos el menor en arr
-        // Este proceso garantiza que arr[left..right] quede ordenado
+        // Esto garantiza que arr[left..right] quede en orden ascendente
         while (iL < n1 && iR < n2)
         {
             if (L[iL] <= R[iR])
             {
-                arr[k] = L[iL]; // El elemento de L es menor o igual, lo tomamos
+                arr[k] = L[iL]; // L tiene el menor (o igual): lo copiamos a arr
                 iL++;
             }
             else
             {
-                arr[k] = R[iR]; // El elemento de R es menor, lo tomamos
+                arr[k] = R[iR]; // R tiene el menor: lo copiamos a arr
                 iR++;
             }
             k++;
         }
 
-        // Si quedaron elementos en L sin copiar, los agregamos directamente
-        // (ya están ordenados y son todos mayores que los últimos de R)
+        // Si quedaron elementos en L que no se copiaron aún,
+        // ya están ordenados y son todos mayores que lo último de R → los copiamos directo
         while (iL < n1) { arr[k] = L[iL]; iL++; k++; }
 
-        // Si quedaron elementos en R sin copiar, los agregamos directamente
+        // Si quedaron elementos en R que no se copiaron aún, igual los copiamos directo
         while (iR < n2) { arr[k] = R[iR]; iR++; k++; }
     }
 
     // ─────────────────────────────────────────────────────────
-    // PASO 2: MergeSort recursivo
-    // Divide el segmento arr[left..right] en dos mitades,
-    // ordena cada mitad recursivamente y luego las fusiona
+    // Divide arr[left..right] recursivamente hasta subarreglos de 1 elemento,
+    // luego los va fusionando de abajo hacia arriba con Merge()
     // ─────────────────────────────────────────────────────────
-    static void MergeSort(int[] arr, int left, int right)
+    public static void MergeSort(int[] arr, int left, int right)
     {
-        // Caso base: un subarreglo de 0 o 1 elemento ya está ordenado
+        // Caso base: un subarreglo de 0 o 1 elemento ya está ordenado por definición
         if (left >= right)
             return;
 
-        // Calculamos el punto medio usando esta fórmula para evitar overflow
-        // en arreglos muy grandes (en lugar de (left + right) / 2)
+        // Calculamos el punto medio con esta fórmula para evitar overflow
+        // (en lugar de la forma naïve (left + right) / 2 que puede desbordar con índices grandes)
         int mid = left + (right - left) / 2;
 
-        MergeSort(arr, left, mid);      // Ordenamos recursivamente la mitad izquierda
-        MergeSort(arr, mid + 1, right); // Ordenamos recursivamente la mitad derecha
+        MergeSort(arr, left, mid);       // Ordenamos recursivamente la mitad izquierda
+        MergeSort(arr, mid + 1, right);  // Ordenamos recursivamente la mitad derecha
 
-        // Ahora ambas mitades están ordenadas: las fusionamos
+        // Ambas mitades ya están ordenadas: las fusionamos en una sola
         Merge(arr, left, mid, right);
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         int[] data = { 3, 7, 6, -10, 15, 23, 55, -13 };
 
         Console.WriteLine("Antes:   " + string.Join(", ", data));
 
         // MergeSort divide hasta subarreglos de 1 elemento,
-        // luego Merge los va uniendo: primero pares, luego grupos de 4, de 8...
+        // luego Merge los va uniendo en orden: primero pares, luego grupos de 4, de 8...
         MergeSort(data, 0, data.Length - 1);
 
         Console.WriteLine("Después: " + string.Join(", ", data));
@@ -577,10 +589,13 @@ La clave de su eficiencia es que detecta y aprovecha secuencias ya ordenadas que
 ```csharp
 using System;
 
-class TimSortDemo
+namespace Algoritmos_grupo.utils;
+
+public class TimSortDemo
 {
-    // Tamaño de cada "run" (bloque pequeño que se ordena con Insertion Sort)
-    // En implementaciones reales suele ser entre 32 y 64
+    // Tamaño máximo de cada "run" (bloque que ordena Insertion Sort)
+    // Con RUN=32, arreglos de hasta 32 elementos se ordenan directamente con Insertion Sort
+    // En implementaciones de producción suele ser 32 o 64
     const int RUN = 32;
 
     // ─────────────────────────────────────────────────────────
@@ -588,7 +603,7 @@ class TimSortDemo
     // Se usa para ordenar cada run individualmente
     // Es eficiente para segmentos pequeños y casi ordenados
     // ─────────────────────────────────────────────────────────
-    static void InsertionSort(int[] arr, int left, int right)
+    public static void InsertionSort(int[] arr, int left, int right)
     {
         // Comenzamos desde left+1: left ya forma una "zona ordenada" de un elemento
         for (int i = left + 1; i <= right; i++)
@@ -613,7 +628,7 @@ class TimSortDemo
     // arr[left..mid] está ordenado  Y  arr[mid+1..right] está ordenado
     // Al terminar arr[left..right] queda completamente ordenado
     // ─────────────────────────────────────────────────────────
-    static void Merge(int[] arr, int left, int mid, int right)
+    public static void Merge(int[] arr, int left, int mid, int right)
     {
         int len1 = mid - left + 1; // Tamaño del primer run
         int len2 = right - mid;    // Tamaño del segundo run
@@ -650,7 +665,7 @@ class TimSortDemo
     // FASE 1 → ordena bloques pequeños (runs) con Insertion Sort
     // FASE 2 → fusiona esos runs con Merge Sort hasta ordenar todo
     // ─────────────────────────────────────────────────────────
-    static void TimSort(int[] arr)
+    public static void TimSort(int[] arr)
     {
         int n = arr.Length;
 
@@ -686,7 +701,7 @@ class TimSortDemo
         }
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         int[] data = { 64, 34, 25, 12, 22, 11, 90, 5, 77, 43, 18, 3 };
 
@@ -746,17 +761,20 @@ La clave es que la partición coloca el pivote exactamente donde debe estar, red
 ```csharp
 using System;
 
-class QuickSortDemo
+namespace Algoritmos_grupo.utils;
+
+
+public class QuickSortDemo
 {
     // ─────────────────────────────────────────────────────────
-    // PASO 1: Partition (partición)
-    // Reorganiza arr[low..high] de forma que:
-    //   → Todos los elementos <= pivote queden a su izquierda
-    //   → Todos los elementos >  pivote queden a su derecha
-    //   → El pivote quede en su posición definitiva
-    // Devuelve el índice final del pivote
+    // Partition: reorganiza arr[low..high] alrededor del pivote
+    // Al terminar garantiza:
+    //   → Todo lo que está a la IZQUIERDA del pivote es <= pivote
+    //   → Todo lo que está a la DERECHA  del pivote es >  pivote
+    //   → El pivote queda en su POSICIÓN DEFINITIVA
+    // Devuelve el índice donde quedó el pivote
     // ─────────────────────────────────────────────────────────
-    static int Partition(int[] arr, int low, int high)
+    public static int Partition(int[] arr, int low, int high)
     {
         int pivot = arr[high]; // Elegimos el último elemento como pivote
         int i = low - 1;       // i es el límite de la "zona de menores/iguales"
@@ -765,7 +783,7 @@ class QuickSortDemo
         // Recorremos desde low hasta high-1 (sin incluir al pivote)
         for (int j = low; j < high; j++)
         {
-            // Si el elemento actual es menor o igual al pivote,
+            // Si el elemento actual es menor o igual al pivote
             // debe pertenecer a la zona izquierda
             if (arr[j] <= pivot)
             {
@@ -783,20 +801,20 @@ class QuickSortDemo
 
         // Colocamos el pivote justo después de todos los elementos menores/iguales
         // i+1 es exactamente su posición final en el arreglo ordenado
-        int temp1  = arr[i + 1];
-        arr[i + 1] = arr[high]; // El pivote va a su posición definitiva
-        arr[high]  = temp1;     // El elemento que estaba ahí va al lugar del pivote
+        int temp1    = arr[i + 1];
+        arr[i + 1]   = arr[high]; // El pivote va a su posición definitiva
+        arr[high]    = temp1;     // El elemento que estaba ahí va al lugar del pivote
 
         return i + 1; // Devolvemos la posición final del pivote
     }
 
     // ─────────────────────────────────────────────────────────
-    // PASO 2: QuickSort recursivo
+    // QuickSort recursivo
     // 1. Llama a Partition para colocar el pivote en su lugar
     // 2. Aplica recursión al subarreglo izquierdo (menores/iguales al pivote)
     // 3. Aplica recursión al subarreglo derecho (mayores al pivote)
     // ─────────────────────────────────────────────────────────
-    static void QuickSort(int[] arr, int low, int high)
+    public static void QuickSort(int[] arr, int low, int high)
     {
         // Caso base: si el subarreglo tiene 0 o 1 elemento, ya está ordenado
         if (low >= high)
@@ -814,16 +832,16 @@ class QuickSortDemo
         QuickSort(arr, pi + 1, high);
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         int[] data = { 10, 7, 8, 9, 1, 5 };
 
         Console.WriteLine("Antes:   " + string.Join(", ", data));
 
-        // Primera llamada: pivote = 5 (arr) [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_e78f29b2-ccbc-407e-8955-e169e9562bd9/5c1bd1bd-39b4-492b-908d-f128b8cf14b2/HTML2025.md)
-        // Partition deja:  con 5 en índice 1 [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_e78f29b2-ccbc-407e-8955-e169e9562bd9/c2c85a63-8f90-4825-aba9-bc09ea418800/RecorridoGrafos.pdf)
-        // Recursión izquierda:  → ya ordenado [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_e78f29b2-ccbc-407e-8955-e169e9562bd9/c2c85a63-8f90-4825-aba9-bc09ea418800/RecorridoGrafos.pdf)
-        // Recursión derecha:    → pivote=7, continúa recursión... [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_e78f29b2-ccbc-407e-8955-e169e9562bd9/3d94ab98-0995-4448-93bb-bce988395395/PythonBKEducate.md)
+        // Primera llamada: pivote = 5 (arr[5])
+        // Partition deja: [1, 5, 8, 9, 10, 7] con 5 en índice 1
+        // Recursión izquierda: [1] → ya ordenado
+        // Recursión derecha:   [8, 9, 10, 7] → pivote=7, continúa recursión...
         QuickSort(data, 0, data.Length - 1);
 
         Console.WriteLine("Después: " + string.Join(", ", data));
@@ -898,9 +916,11 @@ Grafo muy simple:
 
 ```csharp
 using System;
-using System.Collections.Generic;
 
-class DijkstraEjemplo
+using System.Collections.Generic;
+namespace Algoritmos_grupo.utils;
+
+public class DijkstraEjemplo
 {
     // Representa una arista dirigida: va desde el nodo actual hasta 'To' con peso 'W'
     class Edge
@@ -919,7 +939,7 @@ class DijkstraEjemplo
     // Dijkstra: calcula la distancia mínima desde el nodo 's' a todos los demás
     // g  = grafo representado como lista de adyacencia (g[u] = aristas que salen de u)
     // s  = nodo de origen
-    // Devuelve dist[] donde dist[i] = distancia mínima de s a i
+    // Devuelve un arreglo dist[] donde dist[i] = distancia mínima de s a i
     // ─────────────────────────────────────────────────────────
     static int[] Dijkstra(List<Edge>[] g, int s)
     {
@@ -931,22 +951,25 @@ class DijkstraEjemplo
         const int INF = int.MaxValue; // Usamos int.MaxValue como "infinito" inicial
 
         // Paso 1: inicializamos todas las distancias a "infinito"
+        // (no sabemos aún cómo llegar a ningún nodo)
         for (int i = 0; i < n; i++)
             dist[i] = INF;
 
         dist[s] = 0; // La distancia del origen a sí mismo siempre es 0
 
         // Cola de prioridad: extrae siempre el nodo con MENOR distancia provisional
-        // Parámetros: (elemento, prioridad) → ordena por prioridad de menor a mayor
+        // Elemento: (nodo, distancia) → ordena por distancia (segundo parámetro)
         var pq = new PriorityQueue<int, int>();
         pq.Enqueue(s, 0); // Insertamos el nodo origen con distancia 0
 
+        // Procesamos nodos mientras haya en la cola
         while (pq.Count > 0)
         {
             // Extraemos el nodo 'u' con la menor distancia provisional actual
             pq.TryDequeue(out int u, out int d);
 
-            // Si ya procesamos este nodo (puede estar duplicado en la cola), lo ignoramos
+            // Si ya procesamos este nodo antes (puede estar duplicado en la cola),
+            // lo ignoramos para no hacer trabajo innecesario
             if (vis[u])
                 continue;
 
@@ -958,12 +981,14 @@ class DijkstraEjemplo
                 int v = e.To; // Nodo vecino al que podemos llegar desde u
                 int w = e.W;  // Costo de ir de u a v
 
-                // "Relajación": ¿es más corto ir de s→u→v que la distancia que ya teníamos a v?
-                // La condición dist[u] != INF evita overflow al sumar INF + w
+                // "Relajación": comprobamos si ir de s→u→v es más corto
+                // que la mejor distancia que teníamos hasta v
+                // Condición dist[u] != INF evita overflow al sumar INF + w
                 if (dist[u] != INF && dist[u] + w < dist[v])
                 {
-                    dist[v] = dist[u] + w;  // Actualizamos la distancia mínima a v
-                    pq.Enqueue(v, dist[v]); // Reinsertamos v con su nueva prioridad
+                    dist[v] = dist[u] + w; // Actualizamos la distancia mínima a v
+                    pq.Enqueue(v, dist[v]); // Insertamos v en la cola con su nueva prioridad
+                    // (puede quedar duplicado en la cola, pero el check vis[] lo maneja)
                 }
             }
         }
@@ -971,20 +996,22 @@ class DijkstraEjemplo
         return dist; // Devolvemos el arreglo con todas las distancias mínimas desde s
     }
 
-   static void Main()
+    public static void Ejecutar()
     {
         // Construimos el grafo: 3 nodos (0, 1, 2) con aristas dirigidas
         // Estructura: 0 --2--> 1 --3--> 2
-        var g = new List<Edge>;[13]
+        var g = new List<Edge>[3];
         for (int i = 0; i < 3; i++)
             g[i] = new List<Edge>(); // Inicializamos la lista de aristas de cada nodo
 
-        g.Add(new Edge(1, 2)); // Arista: nodo 0 → nodo 1, peso 2
-        g.Add(new Edge(2, 3)); // Arista: nodo 1 → nodo 2, peso 3[8]
+        g[0].Add(new Edge(1, 2)); // Arista: nodo 0 → nodo 1, peso 2
+        g[1].Add(new Edge(2, 3)); // Arista: nodo 1 → nodo 2, peso 3
         // Nodo 2 no tiene aristas salientes
 
-        int[] dist = Dijkstra(g, 0); // Ejecutamos Dijkstra desde el nodo 0
+        // Ejecutamos Dijkstra desde el nodo 0
+        int[] dist = Dijkstra(g, 0);
 
+        // Mostramos la distancia mínima desde el nodo 0 a cada nodo
         Console.WriteLine("Dijkstra (origen 0):");
         for (int i = 0; i < dist.Length; i++)
             Console.WriteLine($"  dist[0 -> {i}] = {dist[i]}");
@@ -1006,4 +1033,3 @@ class DijkstraEjemplo
 * ✔ Para listas grandes → \(O(n \log n)\)
 * ✔ Para listas pequeñas → Insertion Sort
 * ✔ TimSort combina lo mejor de ambos mundos y es el estándar en producción
-
