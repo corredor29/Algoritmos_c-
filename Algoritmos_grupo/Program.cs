@@ -30,30 +30,39 @@ class Program
             switch (opcion)
             {
                 case "1":
+                    Console.WriteLine("=== El resultado de O(1) es ===");
                     Ejemplo1.Ejecutar();
                     break;
                 case "2":
+                    Console.WriteLine("=== El resultado de O(n) es ===");
                     Ejemplo2.Ejecutar();
                     break;
                 case "3":
+                    Console.WriteLine("=== El resultado de O(n^2) es ===");
                     Ejemplo3.Ejecutar();
                     break;
                 case "4":
+                    Console.WriteLine("=== El resultado de Selection Sort es ===");
                     SelectionSortDemo.Ejecutar();
                     break;
                 case "5":
+                    Console.WriteLine("=== El resultado de Insertion Sort es ===");
                     InsertionSortDemo.Ejecutar();
                     break;
                 case "6":
+                    Console.WriteLine("=== El resultado de Merge Sort es ===");
                     MergeSortDemo.Ejecutar();
                     break;
                 case "7":
+                    Console.WriteLine("=== El resultado de TimSort es ===");
                     TimSortDemo.Ejecutar();
                     break;
                 case "8":
+                    Console.WriteLine("=== El resultado de Quick Sort es ===");
                     QuickSortDemo.Ejecutar();
                     break;
                 case "9":
+                    Console.WriteLine("=== El resultado de Dijkstra es ===");
                     DijkstraEjemplo.Ejecutar();
                     break;
                 case "0":
