@@ -2,17 +2,16 @@ using System;
 
 namespace Algoritmos_grupo.utils;
 
-class Ejemplo1
+public class Ejemplo1
 {
     // Devuelve el primer elemento del arreglo
     // Sin importar el tamaño del arreglo, siempre hace UNA sola operación
-    static int GetFirstElement(int[] arr)
-    {
+    public static int GetFirstElement(int[] arr)    {
         // Acceso directo por índice 0: no recorre nada, costo fijo siempre
         return arr[0];
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         int[] data = { 10, 20, 30, 40, 50 };
 

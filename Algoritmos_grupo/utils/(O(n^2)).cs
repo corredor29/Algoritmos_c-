@@ -2,12 +2,12 @@ using System;
 
 namespace Algoritmos_grupo.utils;
 
-class Ejemplo3
+public class Ejemplo3
 {
     // Cuenta cuántos pares (i, j) existen donde arr[i] < arr[j]
     // Usa dos bucles anidados → por cada elemento recorre TODO el arreglo
     // Con n=5: 5×5 = 25 comparaciones en total → O(n²)
-    static int CountPairs(int[] arr)
+    public static int CountPairs(int[] arr)
     {
         int count = 0; // Contador de pares válidos encontrados
 
@@ -27,7 +27,7 @@ class Ejemplo3
         return count; // Total de pares donde arr[i] < arr[j]
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         int[] data = { 3, 1, 4, 1, 5 };
 

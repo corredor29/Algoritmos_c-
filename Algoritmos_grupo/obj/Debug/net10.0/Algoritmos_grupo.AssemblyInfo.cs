@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Algoritmos_grupo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c051be096ee0ef0c63b8591caee1fff4aea02ca8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0894db99717a2ea2aae69045315d35bb8c8ed57b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Algoritmos_grupo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Algoritmos_grupo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

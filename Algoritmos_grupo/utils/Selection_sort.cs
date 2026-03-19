@@ -2,11 +2,11 @@ using System;
 
 namespace Algoritmos_grupo.utils;
 
-class SelectionSortDemo
+public class SelectionSortDemo
 {
     // Ordena el arreglo de menor a mayor buscando el mínimo en cada pasada
     // En cada iteración del bucle externo coloca UN elemento en su posición final
-    static void SelectionSort(int[] arr)
+    public static void SelectionSort(int[] arr)
     {
         int n = arr.Length;
 
@@ -36,7 +36,7 @@ class SelectionSortDemo
         }
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         int[] data = { 64, 25, 12, 22, 11 };
 

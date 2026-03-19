@@ -2,11 +2,11 @@ using System;
 
 namespace Algoritmos_grupo.utils;
 
-class InsertionSortDemo
+public class InsertionSortDemo
 {
     // Ordena el arreglo de menor a mayor insertando cada elemento en su lugar correcto
     // Funciona como ordenar cartas: toma una carta nueva y la coloca donde corresponde
-    static void InsertionSort(int[] arr)
+    public static void InsertionSort(int[] arr)
     {
         int n = arr.Length;
 
@@ -32,7 +32,7 @@ class InsertionSortDemo
         }
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         int[] data = { 12, 11, 13, 5, 6 };
 

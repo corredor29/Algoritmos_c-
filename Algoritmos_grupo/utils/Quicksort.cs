@@ -2,9 +2,8 @@ using System;
 
 namespace Algoritmos_grupo.utils;
 
-public class Quicksort
-{
-    class QuickSortDemo
+
+public class QuickSortDemo
 {
     // ─────────────────────────────────────────────────────────
     // Partition: reorganiza arr[low..high] alrededor del pivote
@@ -14,7 +13,7 @@ public class Quicksort
     //   → El pivote queda en su POSICIÓN DEFINITIVA
     // Devuelve el índice donde quedó el pivote
     // ─────────────────────────────────────────────────────────
-    static int Partition(int[] arr, int low, int high)
+    public static int Partition(int[] arr, int low, int high)
     {
         int pivot = arr[high]; // Elegimos el último elemento como pivote
         int i = low - 1;       // i es el límite de la "zona de menores/iguales"
@@ -54,7 +53,7 @@ public class Quicksort
     // 2. Aplica recursión al subarreglo izquierdo (menores/iguales al pivote)
     // 3. Aplica recursión al subarreglo derecho (mayores al pivote)
     // ─────────────────────────────────────────────────────────
-    static void QuickSort(int[] arr, int low, int high)
+    public static void QuickSort(int[] arr, int low, int high)
     {
         // Caso base: si el subarreglo tiene 0 o 1 elemento, ya está ordenado
         if (low >= high)
@@ -72,7 +71,7 @@ public class Quicksort
         QuickSort(arr, pi + 1, high);
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         int[] data = { 10, 7, 8, 9, 1, 5 };
 
@@ -87,5 +86,4 @@ public class Quicksort
         Console.WriteLine("Después: " + string.Join(", ", data));
         // Resultado esperado: 1, 5, 7, 8, 9, 10
     }
-}
 }

@@ -2,7 +2,7 @@ using System;
 
 namespace Algoritmos_grupo.utils;
 
-class MergeSortDemo
+public class MergeSortDemo
 {
     // ─────────────────────────────────────────────────────────
     // Fusiona dos mitades ya ordenadas en un único segmento ordenado
@@ -10,7 +10,7 @@ class MergeSortDemo
     // arr[left..mid] está ordenado  Y  arr[mid+1..right] está ordenado
     // Al terminar: arr[left..right] queda completamente ordenado
     // ─────────────────────────────────────────────────────────
-    static void Merge(int[] arr, int left, int mid, int right)
+    public static void Merge(int[] arr, int left, int mid, int right)
     {
         int n1 = mid - left + 1; // Cantidad de elementos en la mitad izquierda
         int n2 = right - mid;    // Cantidad de elementos en la mitad derecha
@@ -56,7 +56,7 @@ class MergeSortDemo
     // Divide arr[left..right] recursivamente hasta subarreglos de 1 elemento,
     // luego los va fusionando de abajo hacia arriba con Merge()
     // ─────────────────────────────────────────────────────────
-    static void MergeSort(int[] arr, int left, int right)
+    public static void MergeSort(int[] arr, int left, int right)
     {
         // Caso base: un subarreglo de 0 o 1 elemento ya está ordenado por definición
         if (left >= right)
@@ -73,7 +73,7 @@ class MergeSortDemo
         Merge(arr, left, mid, right);
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         int[] data = { 3, 7, 6, -10, 15, 23, 55, -13 };
 

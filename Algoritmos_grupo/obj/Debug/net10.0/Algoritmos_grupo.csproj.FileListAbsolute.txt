@@ -1,0 +1,15 @@
+D:\Algoritmos\Algoritmos_grupo\obj\Debug\net10.0\Algoritmos_grupo.GeneratedMSBuildEditorConfig.editorconfig
+D:\Algoritmos\Algoritmos_grupo\obj\Debug\net10.0\Algoritmos_grupo.AssemblyInfoInputs.cache
+D:\Algoritmos\Algoritmos_grupo\obj\Debug\net10.0\Algoritmos_grupo.AssemblyInfo.cs
+D:\Algoritmos\Algoritmos_grupo\obj\Debug\net10.0\Algoritmos_grupo.csproj.CoreCompileInputs.cache
+D:\Algoritmos\Algoritmos_grupo\obj\Debug\net10.0\Algoritmos_grupo.sourcelink.json
+D:\Algoritmos\Algoritmos_grupo\bin\Debug\net10.0\Algoritmos_grupo.exe
+D:\Algoritmos\Algoritmos_grupo\bin\Debug\net10.0\Algoritmos_grupo.deps.json
+D:\Algoritmos\Algoritmos_grupo\bin\Debug\net10.0\Algoritmos_grupo.runtimeconfig.json
+D:\Algoritmos\Algoritmos_grupo\bin\Debug\net10.0\Algoritmos_grupo.dll
+D:\Algoritmos\Algoritmos_grupo\bin\Debug\net10.0\Algoritmos_grupo.pdb
+D:\Algoritmos\Algoritmos_grupo\obj\Debug\net10.0\Algoritmos_grupo.dll
+D:\Algoritmos\Algoritmos_grupo\obj\Debug\net10.0\refint\Algoritmos_grupo.dll
+D:\Algoritmos\Algoritmos_grupo\obj\Debug\net10.0\Algoritmos_grupo.pdb
+D:\Algoritmos\Algoritmos_grupo\obj\Debug\net10.0\Algoritmos_grupo.genruntimeconfig.cache
+D:\Algoritmos\Algoritmos_grupo\obj\Debug\net10.0\ref\Algoritmos_grupo.dll

@@ -2,13 +2,12 @@ using System;
 
 namespace Algoritmos_grupo.utils;
 
-using System;
 
-class Ejemplo2
+public class Ejemplo2
 {
     // Suma todos los elementos del arreglo recorriéndolo una sola vez
     // Si el arreglo tiene n elementos → hace exactamente n sumas → O(n)
-    static int SumArray(int[] arr)
+    public static int SumArray(int[] arr)
     {
         int sum = 0; // Acumulador donde iremos guardando la suma parcial
 
@@ -22,7 +21,7 @@ class Ejemplo2
         return sum; // Devolvemos la suma total
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         int[] data = { 1, 2, 3, 4, 5 };
 

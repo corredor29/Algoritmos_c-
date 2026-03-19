@@ -1,8 +1,9 @@
 using System;
 
+using System.Collections.Generic;
 namespace Algoritmos_grupo.utils;
 
-class DijkstraEjemplo
+public class DijkstraEjemplo
 {
     // Representa una arista dirigida: va desde el nodo actual hasta 'To' con peso 'W'
     class Edge
@@ -78,7 +79,7 @@ class DijkstraEjemplo
         return dist; // Devolvemos el arreglo con todas las distancias mínimas desde s
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         // Construimos el grafo: 3 nodos (0, 1, 2) con aristas dirigidas
         // Estructura: 0 --2--> 1 --3--> 2

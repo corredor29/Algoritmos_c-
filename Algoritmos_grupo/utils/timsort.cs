@@ -2,7 +2,7 @@ using System;
 
 namespace Algoritmos_grupo.utils;
 
-class TimSortDemo
+public class TimSortDemo
 {
     // Tamaño máximo de cada "run" (bloque que ordena Insertion Sort)
     // Con RUN=32, arreglos de hasta 32 elementos se ordenan directamente con Insertion Sort
@@ -14,7 +14,7 @@ class TimSortDemo
     // Se usa para ordenar cada run individualmente
     // Es eficiente para segmentos pequeños y casi ordenados
     // ─────────────────────────────────────────────────────────
-    static void InsertionSort(int[] arr, int left, int right)
+    public static void InsertionSort(int[] arr, int left, int right)
     {
         // Comenzamos desde left+1: left ya forma una "zona ordenada" de un elemento
         for (int i = left + 1; i <= right; i++)
@@ -39,7 +39,7 @@ class TimSortDemo
     // arr[left..mid] está ordenado  Y  arr[mid+1..right] está ordenado
     // Al terminar arr[left..right] queda completamente ordenado
     // ─────────────────────────────────────────────────────────
-    static void Merge(int[] arr, int left, int mid, int right)
+    public static void Merge(int[] arr, int left, int mid, int right)
     {
         int len1 = mid - left + 1; // Tamaño del primer run
         int len2 = right - mid;    // Tamaño del segundo run
@@ -76,7 +76,7 @@ class TimSortDemo
     // FASE 1 → ordena bloques pequeños (runs) con Insertion Sort
     // FASE 2 → fusiona esos runs con Merge Sort hasta ordenar todo
     // ─────────────────────────────────────────────────────────
-    static void TimSort(int[] arr)
+    public static void TimSort(int[] arr)
     {
         int n = arr.Length;
 
@@ -112,7 +112,7 @@ class TimSortDemo
         }
     }
 
-    static void Main()
+    public static void Ejecutar()
     {
         int[] data = { 64, 34, 25, 12, 22, 11, 90, 5, 77, 43, 18, 3 };
 
